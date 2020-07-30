@@ -103,6 +103,12 @@ class Agent():
         self.critic_optimizer.zero_grad()
         critic_loss.backward()
         self.critic_optimizer.step()
+        
+        # ---------------------------- freeze critic ---------------------------- #
+        # Freeze Q-network so you don't waste computational effort 
+        # computing gradients for it during the policy learning step.
+        for p in self.critic_local.parameters():
+            p.requires_grad = False
 
         # ---------------------------- update actor ---------------------------- #
         # Compute actor loss
@@ -112,9 +118,16 @@ class Agent():
         self.actor_optimizer.zero_grad()
         actor_loss.backward()
         self.actor_optimizer.step()
+        
+        # ---------------------------- unfreeze critic ---------------------------- #
+        # Unfreeze Q-network so you can optimize it at next DDPG step.
+        for p in self.critic_local.parameters():
+            p.requires_grad = True
 
-        self.soft_update(self.critic_local, self.critic_target, TAU)
-        self.soft_update(self.actor_local, self.actor_target, TAU)
+        # ----------------------- update target networks ----------------------- #
+        with torch.no_grad():
+            self.soft_update(self.critic_local, self.critic_target, TAU)
+            self.soft_update(self.actor_local, self.actor_target, TAU)
 
     def soft_update(self, local_model, target_model, tau):
         """Soft update model parameters.
