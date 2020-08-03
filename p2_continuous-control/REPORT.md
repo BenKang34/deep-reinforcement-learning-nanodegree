@@ -41,9 +41,11 @@ The barrier for solving the second version of the environment is slightly differ
 
 
 By using second version, the model was able to be trained in multiple (non-interacting, parallel) copies of the same agent to distribute the task of gathering experience. When `torch.no_grad` option was not specified for the `critic` while `actor` was training, the reward was able to go over 12 and did not maintain for 100 consecutive episodes.
+
 ![Without addiing torch.no_grad Option for Critic][image2]
 
 After adding `torch.no_grad` option to `critic` while `actor` was training, the model was able to achieve more than average score of 30 after 88 episodes, and was stabilize for the rest of the training at average score of 34.
+
 ![After addiing torch.no_grad Option for Critic][image3]
 
 ### Ideas for Future Work
