@@ -8,7 +8,7 @@
 [image6]: result/DDQN-wDropoutLayers-PPER.png "Result of Deep Q-Network after adding dropout layers and proportional prioritized experience replay"
 
 
-# Project 2: Continuous Control
+# Project 1: Navigation
 
 ### Introduction
 
