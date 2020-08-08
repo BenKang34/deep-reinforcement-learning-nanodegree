@@ -32,8 +32,8 @@ The task is episodic, and in order to solve the environment, your agent must get
 * Dropout layers were added to the model, and had seen improvement with the score.
 * Proportional Prioritized Experience Replay was used with stratified sampling as described in the original paper.
 * Reference:
- - [Deep Reinforcement Learning with Double Q-learning](https://arxiv.org/abs/1509.06461)
- - [Prioritized Experience Replay](https://arxiv.org/abs/1511.05952)
+  - [Deep Reinforcement Learning with Double Q-learning](https://arxiv.org/abs/1509.06461)
+  - [Prioritized Experience Replay](https://arxiv.org/abs/1511.05952)
 
 ### Training Code & Weight
 
